@@ -8,4 +8,10 @@ Filtra las recetas por tiempo máximo de preparación o cocción
 Consulta la disposición óptima de la interfaz según el tamaño de pantalla del dispositivo
 Consulta los estados de paso del cursor y de enfoque para todos los elementos interactivos de la página
 
-![Preview del proyecto](src\assets\images\Recipe finder website.png)
+![Preview del proyecto](https://github.com/Yokaleis/Sitio-web-de-recetas/blob/main/src/assets/images/Recipe%20finder%20website.png)
+
+## 🛠️ Tecnologías
+- React
+- Vite
+- Tailwind CSS
+
