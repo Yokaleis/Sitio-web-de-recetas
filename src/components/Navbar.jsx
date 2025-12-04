@@ -1,10 +1,12 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { BotonPrincipal } from "./Buttons";
 
 import {LogoPage} from "./../assets/icons"
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import { NavLink } from "react-router";
 
 export function Navbar() {
+  const location = useLocation();
     return(
         <>
         {/* <nav className="content-center h-16 relative bg-transparent" >
@@ -77,12 +79,24 @@ export function Navbar() {
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             {/* <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" --> */}
-            <a href="#" class="border-b-2 border-transparent hover:border-secondary px-3 py-2 text-sm font-medium text-black"><Link to="/">Home</Link></a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary"><Link to="/aboutUs">About Us</Link></a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary"><Link to="/recipes">Recipes</Link></a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary"><Link to="/products">Products</Link></a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary"><Link to="/blog">Blog</Link></a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary"><Link to="/products">Contact</Link></a>
+            <a href="#" class="px-3 py-2 text-sm font-medium">
+              <Link to="/" className={location.pathname === "/" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Home</Link>
+            </a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+              <Link to="/aboutUs" className={location.pathname === "/aboutUs" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>About Us</Link>
+              </a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+              <Link to="/recipes" className={location.pathname === "/recipes" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Recipes</Link>
+            </a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+              <Link to="/products" className={location.pathname === "/products" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Products</Link>
+            </a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+              <Link to="/blog" className={location.pathname === "/blog" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Blog</Link>
+            </a>
+          <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+              <Link to="/contact" className={location.pathname === "/contact" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Contact</Link>
+            </a>
           </div>
         </div>
       </div>

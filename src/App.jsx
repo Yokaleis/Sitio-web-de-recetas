@@ -12,6 +12,7 @@ import { Login } from './pages/public/Login'
 import { Home } from './pages/admin/Home'
 import { About } from './pages/admin/About'
 import { FilterSearch } from './pages/admin/Recipes'
+import { Products } from './pages/admin/Products'
 
 function App() {  
 
@@ -25,6 +26,8 @@ function App() {
           <Route index element={<Home/>}/>
           <Route path='aboutUs' element={<About/>}/>
           <Route path='recipes' element={<FilterSearch/>}/>
+          <Route path='products' element={<Products/>}/>
+
         </Route>
       </Routes>
       </BrowserRouter>
