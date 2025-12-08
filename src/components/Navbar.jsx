@@ -101,7 +101,7 @@ export function Navbar() {
         </div>
       </div>
       <div class="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <BotonPrincipal text="Login"/>
+        <Link to="/login"><BotonPrincipal text="Login"/></Link>
       </div>
     </div>
   </div>
