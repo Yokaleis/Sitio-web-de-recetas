@@ -1,12 +1,32 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { BotonPrincipal } from "./Buttons";
 
-import {LogoPage} from "./../assets/icons"
+import {IconShooping, LogoPage} from "./../assets/icons"
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { NavLink } from "react-router";
+import { useAuth } from "../context/authContext";
+import { getAuth, signOut } from "firebase/auth";
+
+
 
 export function Navbar() {
   const location = useLocation();
+
+  const { usuario, loading } = useAuth();
+  const navigate = useNavigate();
+
+ function handleLogout() {
+  const auth = getAuth();
+  signOut(auth)
+    .then(() => {
+      console.log("✅ Usuario ha cerrado sesión");
+    })
+    .catch((error) => {
+      console.error("❌ Error al cerrar sesión:", error);
+    });
+
+  }
+
     return(
         <>
         {/* <nav className="content-center h-16 relative bg-transparent" >
@@ -29,12 +49,12 @@ export function Navbar() {
         </nav> */}
 
         
-        <nav class=" bg-transparent after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
-  <div class="mx-auto px-2 sm:px-6 lg:px-8">
-    <div class="flex h-16 items-center justify-between">
-      <div class="inset-y-0 left-0 flex items-center sm:hidden">
+        <nav className=" bg-transparent after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+  <div className="mx-auto px-2 sm:px-6 lg:px-8">
+    <div className="flex h-16 items-center justify-between">
+      <div className="inset-y-0 left-0 flex items-center sm:hidden">
         {/* <!-- Mobile menu button--> */}
-        <button type="button" class=" items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+        <button type="button" className=" items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
           <Menu>
         <MenuButton className="inline-flex items-center gap-2 rounded-md bg-transparent px-1.5 py-1.5 text-sm/6 font-semibold text-black">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -74,37 +94,59 @@ export function Navbar() {
       <div class="flex shrink-0 items-center">
           <LogoPage/>
         </div>
-      <div class="flex content-center justify-between sm:items-stretch sm:justify-start">
+      <div className="flex content-center justify-between sm:items-stretch sm:justify-start">
         
-        <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
+        <div className="hidden sm:ml-6 sm:block">
+          <div className="flex space-x-4">
             {/* <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" --> */}
-            <a href="#" class="px-3 py-2 text-sm font-medium">
+            <a href="#" className="px-3 py-2 text-sm font-medium">
               <Link to="/" className={location.pathname === "/" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Home</Link>
             </a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+            <a href="#" className="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
               <Link to="/aboutUs" className={location.pathname === "/aboutUs" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>About Us</Link>
               </a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+            <a href="#" className="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
               <Link to="/recipes" className={location.pathname === "/recipes" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Recipes</Link>
             </a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+            <a href="#" className="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
               <Link to="/products" className={location.pathname === "/products" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Products</Link>
             </a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+            <a href="#" className="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
               <Link to="/blog" className={location.pathname === "/blog" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Blog</Link>
             </a>
-          <a href="#" class="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
+          <a href="#" className="rounded-md px-3 py-2 text-sm text-gray-600 hover:text-secondary">
               <Link to="/contact" className={location.pathname === "/contact" ?  "text-black border-2 py-1.5 border-spacing-2 border-transparent border-b-secondary" : "text-gray-600 hover:text-secondary"}>Contact</Link>
             </a>
           </div>
         </div>
       </div>
-      <div class="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <Link to="/login"><BotonPrincipal text="Login"/></Link>
+      <div className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div>
+          {/* MUESTRA EMAIL en pequeño si hay usuario */}
+        {!loading && usuario && (
+          <span className="text-sm text-gray-600 hidden md:inline">
+            {usuario.email}
+          </span>
+        )}
+        </div>
+
+ {/* BOTÓN: si no hay user => Login, si hay user => Carrito (o Logout) */}
+        {loading ? (
+          <div aria-hidden />
+        ) : usuario ? (
+          <>
+            <Link to="/cart" className="btn btn-outline px-4 py-2"><IconShooping/></Link>
+             <a onClick={handleLogout} ><BotonPrincipal text="Cerrar"/> </a>                   
+          </>
+        ) : (
+           <Link to="/login"><BotonPrincipal text="Login"/></Link>
+        )}
+      </div>
+      
+        
+        {/* <Link to="/login"><BotonPrincipal text="Login"/></Link> */}
       </div>
     </div>
-  </div>
 
 </nav>
 

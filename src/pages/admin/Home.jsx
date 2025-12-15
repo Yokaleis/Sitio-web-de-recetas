@@ -7,7 +7,9 @@ import { Footer } from "../../components/Footer";
 import { BotonPrincipal } from "../../components/Buttons";
 import { recipes } from "../../mockups/recipes";
 
+
 export function Home() {
+
     return (
         <>
             <div className="p-6">
